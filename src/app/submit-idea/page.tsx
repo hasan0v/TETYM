@@ -6,8 +6,6 @@ import * as Yup from 'yup';
 import MainLayout from '@/components/layout/MainLayout';
 import { useLanguage } from '@/lib/language';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
 
 // This would be fetched from Supabase in production
 const categories = [
@@ -48,16 +46,15 @@ export default function SubmitIdeaPage() {
       description: Yup.string().required(t('submit.validation.descriptionRequired')).min(50, t('submit.validation.descriptionMin')),
       problem: Yup.string().required(t('submit.validation.problemRequired')),
       solution: Yup.string().required(t('submit.validation.solutionRequired')),
-      contact_email: Yup.string().email(t('submit.validation.emailValid')).required(t('submit.validation.emailRequired')),      attachments: Yup.array().of(
-        Yup.mixed<File>()
-          .test('fileSize', t('submit.validation.fileSize'), function(value) {
-            if (!value) return true;
-            return value.size <= 5000000;
-          })
-          .test('fileType', t('submit.validation.fileType'), function(value) {
-            if (!value) return true;
-            return ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(value.type);
-          })
+      contact_email: Yup.string().email(t('submit.validation.emailValid')).required(t('submit.validation.emailRequired')),
+      attachments: Yup.array().of(
+        Yup.mixed()
+          .test('fileSize', t('submit.validation.fileSize'), (value: any) => 
+            !value || (value && value.size <= 5000000)
+          )
+          .test('fileType', t('submit.validation.fileType'), (value: any) =>
+            !value || (value && ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(value.type))
+          )
       )
     }),
     onSubmit: async (values) => {
@@ -138,18 +135,19 @@ export default function SubmitIdeaPage() {
             <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('submit.successTitle')}</h2>
             <p className="text-gray-600 mb-8">{t('submit.successMessage')}</p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">              <button
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
                 onClick={() => setSubmitSuccess(false)}
                 className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
               >
                 {t('submit.submitAnother')}
               </button>
-              <Link
+              <a
                 href="/"
                 className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 {t('submit.backToHome')}
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -420,14 +418,13 @@ export default function SubmitIdeaPage() {
             {formik.values.attachments.length > 0 && (
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {formik.values.attachments.map((file) => (
-                  <div key={file.name} className="relative group">                    <div className="border rounded-lg p-2 h-24 flex flex-col items-center justify-center">
+                  <div key={file.name} className="relative group">
+                    <div className="border rounded-lg p-2 h-24 flex flex-col items-center justify-center">
                       {filePreviews[file.name] ? (
-                        <Image
+                        <img
                           src={filePreviews[file.name]}
                           alt={file.name}
                           className="h-full object-contain"
-                          width={100}
-                          height={100}
                         />
                       ) : (
                         <>

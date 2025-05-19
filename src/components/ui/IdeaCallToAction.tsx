@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function IdeaCallToAction() {
-  // Remove the unused t variable
+  const { t } = useLanguage();
   
   return (
     <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">

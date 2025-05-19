@@ -10,7 +10,7 @@ interface MainLayoutProps {
 }
 
 export default function MainLayout({ children }: MainLayoutProps) {
-  // Remove unused pathname variable
+  const pathname = usePathname();
   
   // Add pt-20 to account for the navbar height
   return (
