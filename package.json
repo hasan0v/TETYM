@@ -1,36 +1,12 @@
 {
-  "name": "app",
+  "name": "tetym",
   "version": "0.1.0",
   "private": true,
+  "workspaces": ["app"],
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@headlessui/react": "^2.2.2",
-    "@heroicons/react": "^2.2.0",
-    "@supabase/supabase-js": "^2.49.4",
-    "formik": "^2.4.6",
-    "framer-motion": "^12.10.1",
-    "next": "15.3.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "swiper": "^11.2.6",
-    "yup": "^1.6.1",
-    "zustand": "^5.0.4"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "canvas": "^3.1.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "dev": "cd app && npm run dev",
+    "build": "cd app && npm run build",
+    "start": "cd app && npm run start",
+    "lint": "cd app && npm run lint"
   }
 }
