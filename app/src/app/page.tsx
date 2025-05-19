@@ -1,0 +1,42 @@
+'use client';
+
+import MainLayout from '@/components/layout/MainLayout';
+import Hero from '@/components/hero/Hero';
+import Section from '@/components/ui/Section';
+import IdeasSection from '@/components/ideas/IdeasSection';
+import AchievementsSection from '@/components/achievements/AchievementsSection';
+import ClubsSection from '@/components/clubs/ClubsSection';
+import BlogSection from '@/components/blog/BlogSection';
+import IdeaCallToAction from '@/components/ui/IdeaCallToAction';
+
+export default function Home() {
+  return (
+    <MainLayout>
+      {/* Hero Section */}
+      <Hero />
+      
+      {/* Ideas Section */}
+      <Section title="home.ideas.title" viewAllLink="/ideas" bgColor="bg-white">
+        <IdeasSection />
+      </Section>
+      
+      {/* Call to Action */}
+      <IdeaCallToAction />
+      
+      {/* Achievements Section */}
+      <Section title="home.achievements.title" viewAllLink="/achievements" bgColor="bg-gray-50">
+        <AchievementsSection />
+      </Section>
+      
+      {/* Clubs Section */}
+      <Section title="home.clubs.title" viewAllLink="/clubs" bgColor="bg-white">
+        <ClubsSection />
+      </Section>
+      
+      {/* Blog Section */}
+      <Section title="home.blog.title" viewAllLink="/blog" bgColor="bg-gray-50">
+        <BlogSection />
+      </Section>
+    </MainLayout>
+  );
+} 

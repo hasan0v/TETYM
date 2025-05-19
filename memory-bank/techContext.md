@@ -166,3 +166,22 @@
     *   `featured_image_url` (TEXT, optional)
 
 *Note on Bilingual Fields:* Suffixing with `_az` and `_en` is a common pattern. Alternatively, a separate translations table could be used for more complex scenarios, but for two languages, direct fields are often simpler.
+
+## 7. UI Component Implementation
+
+*   **Custom Components with Tailwind CSS:** 
+    *   Built custom components like Card, Section, Hero, and form elements using Tailwind CSS for maximum design flexibility and consistency with the project's visual identity.
+    *   Implemented responsive designs that work well on mobile, tablet, and desktop screens.
+
+*   **Animation Library:**
+    *   Framer Motion was implemented for animations and transitions to create a polished user experience.
+    *   Used for page transitions, hover effects, and scroll animations.
+
+*   **Component Design Patterns:**
+    *   **Error Handling:** Implemented robust error handling for images in the Card component with graceful fallbacks (displaying title initials when images fail to load).
+    *   **Internationalization:** All components are designed to work with the language context system for bilingual support.
+    *   **Form Validation:** Used Formik with Yup for form validation with support for both Azerbaijani and English error messages.
+
+*   **Type Safety:**
+    *   Enhanced the language system with proper TypeScript typing for improved code reliability.
+    *   Added type-safe translation function that provides better error handling and substitution support.

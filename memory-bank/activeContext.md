@@ -1,63 +1,80 @@
-# Active Context: BSU SSTCC Website (Initial Setup)
+# Active Context: BSU SSTCC Website Project
 
-## 1. Current Sprint Goals (Project Initiation Phase)
+## Current Sprint Goals
 
-*   **Goal 1: Finalize Foundational Documentation.**
-    *   Complete and review Project Brief, Product Context, System Patterns, and Tech Context documents in the Memory Bank.
-*   **Goal 2: Make Key Technology Decisions.**
-    *   ~~Decide on the primary Frontend Framework (e.g., Next.js).~~ **Decision: Next.js**
-    *   ~~Decide on the Styling approach (e.g., Tailwind CSS).~~ **Decision: Tailwind CSS**
-    *   ~~Select an Auto-Translation Service API.~~ **Decision: Google Cloud Translation API**
-    *   ~~Choose an Image Carousel library.~~ **Decision: Swiper.js**
-    *   **Decision: Formik for form handling.**
-*   **Goal 3: Set Up Development Environment & Version Control.**
-    *   Initialize Git repository.
-    *   Set up Supabase project (local and remote if possible).
-    *   Ensure team members have necessary tools (Node.js, Supabase CLI, IDEs) configured.
-*   **Goal 4: Design Initial Mockups/Wireframes for Key Pages.**
-    *   Homepage.
-    *   Idea Submission Page.
-    *   Ideas Listing Page.
+*   Complete the design and implementation of the core pages for the BSU Student Scientific-Technical Creativity Center (SSTCC) website.
+*   Establish bilingual support for all content with proper translation system.
+*   Fix any component integration issues, especially related to image handling.
+*   Implement proper error states and fallbacks for the UI components.
+*   Create all necessary pages for ideas, achievements, and idea submission.
 
-## 2. Active Tasks
+## Active Tasks
 
-*   **Task 1.1:** Review and approve `projectbrief.md`.
-*   **Task 1.2:** Review and approve `productContext.md`.
-*   **Task 1.3:** Review and approve `systemPatterns.md`.
-*   **Task 1.4:** Review and approve `techContext.md`.
-*   **Task 2.1:** ~~Research and decide: Frontend Framework (Next.js, Nuxt.js, SvelteKit).~~ **DONE: Next.js**
-*   **Task 2.2:** ~~Research and decide: Styling (Tailwind CSS vs. CSS-in-JS).~~ **DONE: Tailwind CSS**
-*   **Task 2.3:** ~~Evaluate and select Auto-Translation Service (Google Translate, DeepL, etc.).~~ **DONE: Google Cloud Translation API**
-*   **Task 2.4:** ~~Select Image Carousel Library (e.g., Swiper.js).~~ **DONE: Swiper.js**
-*   **Task 2.5 (New):** Confirm Formik as the choice for form handling with Next.js. **DONE: Formik**
-*   **Task 3.1:** Create Git repository on GitHub/GitLab.
-*   **Task 3.2:** Initialize Supabase project via Supabase dashboard.
-*   **Task 3.3:** Install Supabase CLI and log in.
-*   **Task 3.4:** Document development environment setup steps for the team.
-*   **Task 4.1:** Create wireframes for the Homepage layout and key sections.
-*   **Task 4.2:** Create wireframes for the "Submit Your Idea" page, including form fields.
-*   **Task 4.3:** Create wireframes for the "Ideas (Projects)" listing page.
+*   **User Interface Enhancements**
+    * [x] Fix Card component integration with proper error handling for images
+    * [x] Add fallback display when images fail to load
+    * [x] Update language system for proper type safety
+    * [x] Add translation support for "Learn More" text in Cards
 
-## 3. Blockers & Challenges
+*   **Placeholder Images**
+    * [x] Create a script to generate SVG placeholder images
+    * [x] Replace JPG placeholders with SVG placeholders
 
-*   **Blocker 1:** Availability of stakeholders for timely review and approval of foundational documents.
-*   **Challenge 1:** Ensuring the chosen "futuristic" design concept is clearly defined and translatable into actionable design tasks.
-*   **Challenge 2:** Estimating the effort for automatic translation integration and the potential need for manual review workflows.
-*   **Challenge 3:** Finalizing the exact fields and validation rules for the Idea Submission form to meet all stakeholder requirements.
+*   **New Pages**
+    * [x] Create Ideas listing page with filtering and search
+    * [x] Create individual Idea detail page
+    * [x] Create Achievements page with filtering by category and year
+    * [x] Create Idea Submission form with validation
+    * [ ] Create Clubs detailed page
+    * [ ] Create Blog detailed page
+    * [ ] Create About page
 
-## 4. Decisions Needed
+*   **Translations**
+    * [x] Add translations for Ideas listing
+    * [x] Add translations for Idea details
+    * [x] Add translations for Achievements page
+    * [x] Add translations for Idea submission form
+    * [ ] Add translations for remaining pages
 
-*   **Decision 1:** Final choice of Frontend Framework.
-*   **Decision 2:** Final choice of Styling library/framework.
-*   **Decision 3:** Final choice of Auto-Translation API service.
-*   Decision 4: Who will be responsible for initial UI/UX design mockups vs. wireframes?
-*   Decision 5: What is the primary language for initial content creation before translation (Azerbaijani confirmed, but re-verify workflow).
-*   **Decision 6 (New):** Confirm Formik for form handling. **DONE: Formik**
+*   **Supabase Integration**
+    * [ ] Set up data fetching from Supabase for all content types
+    * [ ] Implement form submission to Supabase
+    * [ ] Create backend functions for translations
 
-## 5. Next Actions (Immediate)
+## Blockers & Challenges
 
-*   Schedule a meeting to review and finalize foundational documents (Project Brief, Product Context, etc.).
-*   Assign team members to research and present findings for technology decisions (Frontend, Styling, Translation).
-*   Start drafting initial wireframes for the Homepage and Idea Submission page.
-*   Set up the shared Git repository.
-*   All team members to install and configure Supabase CLI.
+*   **Component Integration Issues**
+    * Card component initially had issues with image loading errors, but these have been resolved with proper error states and fallback displays.
+    * Need to ensure consistent behavior across different browsers and device sizes.
+
+*   **Type Safety**
+    * Translations system was improved to handle type-safe translations, but more work may be needed for dynamic content.
+
+*   **Content Management**
+    * Need to design and implement an admin interface for content management.
+    * Supabase integration needs to be completed for real data.
+
+## Decisions Needed
+
+*   **Authentication Strategy**
+    * Need to decide on the authentication approach for admin users and potentially for students submitting ideas.
+    * Options: Supabase Auth, Custom JWT, OAuth providers
+
+*   **Deployment Strategy**
+    * Need to determine the hosting and deployment workflow.
+    * Options: Vercel, Netlify, Azure, self-hosted
+
+*   **Image Storage**
+    * Need to finalize how user-submitted images will be stored and optimized.
+    * Options: Supabase Storage, Cloudinary, AWS S3
+
+## Next Actions
+
+1. Complete the remaining pages: Clubs detailed page, Blog detailed page, and About page.
+2. Add all necessary translations for these new pages.
+3. Start implementing Supabase data fetching to replace placeholder data.
+4. Set up authentication for admin users.
+5. Create admin dashboard for content management.
+6. Design and implement the user-submitted content workflow.
+7. Set up automated testing for critical components.
+8. Configure CI/CD pipeline for deployment.
