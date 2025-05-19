@@ -5,7 +5,7 @@ import MainLayout from '@/components/layout/MainLayout';
 import Card from '@/components/ui/Card';
 import { useLanguage } from '@/lib/language';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 // This will later be fetched from Supabase
 const sampleClubs = [
@@ -83,8 +83,22 @@ const sampleClubs = [
   }
 ];
 
+// Define interface for club objects
+interface Club {
+  id: string;
+  name_en: string;
+  name_az: string;
+  description_en: string;
+  description_az: string;
+  image_url: string;
+  members_count: number;
+  founded_date: string;
+  category_en: string;
+  category_az: string;
+}
+
 // Get unique categories from clubs
-const getCategories = (clubs: any[], language: string) => {
+const getCategories = (clubs: Club[], language: string) => {
   const categoryField = language === 'en' ? 'category_en' : 'category_az';
   const uniqueCategories = new Set();
   

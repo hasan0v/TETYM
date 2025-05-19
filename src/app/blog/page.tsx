@@ -5,10 +5,24 @@ import MainLayout from '@/components/layout/MainLayout';
 import Card from '@/components/ui/Card';
 import { useLanguage } from '@/lib/language';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+// import Link from 'next/link';
+
+// Define proper interface for blog posts
+interface BlogPost {
+  id: string;
+  title_en: string;
+  title_az: string;
+  content_preview_en: string;
+  content_preview_az: string;
+  image_url: string;
+  created_at: string;
+  author: string;
+  category_en: string;
+  category_az: string;
+}
 
 // This will later be fetched from Supabase
-const sampleBlogPosts = [
+const sampleBlogPosts: BlogPost[] = [
   {
     id: '1',
     title_en: 'BSU Students Win National Innovation Award',
@@ -84,7 +98,7 @@ const sampleBlogPosts = [
 ];
 
 // Get unique categories from blog posts
-const getCategories = (posts: any[], language: string) => {
+const getCategories = (posts: BlogPost[], language: string) => {
   const categoryField = language === 'en' ? 'category_en' : 'category_az';
   const uniqueCategories = new Set();
   

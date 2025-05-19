@@ -8,8 +8,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
+// Define proper interface for blog posts
+interface BlogPost {
+  id: string;
+  title_en: string;
+  title_az: string;
+  content_preview_en: string;
+  content_preview_az: string;
+  content_en: string;
+  content_az: string;
+  image_url: string;
+  cover_image_url: string;
+  created_at: string;
+  author: string;
+  author_title_en: string;
+  author_title_az: string;
+  category_en: string;
+  category_az: string;
+  read_time_minutes?: number;
+  author_image: string;
+  related_posts?: string[];
+}
+
 // This will later be fetched from Supabase
-const sampleBlogPosts = [
+const sampleBlogPosts: BlogPost[] = [
   {
     id: '1',
     title_en: 'BSU Students Win National Innovation Award',
@@ -216,8 +238,8 @@ export default function BlogPostDetailPage() {
   const params = useParams();
   const { id } = params;
   
-  const [post, setPost] = useState<any | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -230,7 +252,7 @@ export default function BlogPostDetailPage() {
           setPost(foundPost || null);
           
           if (foundPost && foundPost.related_posts) {
-            const related = sampleBlogPosts.filter(p => foundPost.related_posts.includes(p.id));
+            const related = sampleBlogPosts.filter(p => foundPost.related_posts?.includes(p.id));
             setRelatedPosts(related);
           }
           

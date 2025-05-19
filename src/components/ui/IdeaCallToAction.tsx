@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function IdeaCallToAction() {
   const { t } = useLanguage();
-  
+  console.log(t('cta.title'));
   return (
     <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
       <div className="container mx-auto px-4">

@@ -8,8 +8,30 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Define the Idea interface
+interface Idea {
+  id: string;
+  title_en: string;
+  title_az: string;
+  description_en: string;
+  description_az: string;
+  full_description_en?: string;
+  full_description_az?: string;
+  cover_image_url: string;
+  status: string;
+  category_en: string;
+  category_az: string;
+  created_at: string;
+  author_name?: string;
+  technologies?: string[];
+  upvotes?: number;
+  team_size?: number;
+  duration_months?: number;
+  current_phase?: string;
+}
+
 // This will later be fetched from Supabase based on the ID
-const sampleIdeas = [
+const sampleIdeas: Idea[] = [
   {
     id: '1',
     title_en: 'Smart Campus Navigation System',
@@ -73,7 +95,7 @@ Tətbiq, platformalararası uyğunluq üçün React Native istifadə edərək, g
 export default function IdeaDetailPage() {
   const params = useParams();
   const { language, t } = useLanguage();
-  const [idea, setIdea] = useState<any>(null);
+  const [idea, setIdea] = useState<Idea | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   
   useEffect(() => {

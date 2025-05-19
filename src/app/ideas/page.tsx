@@ -2,13 +2,33 @@
 
 import { useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
-import Section from '@/components/ui/Section';
+// import Section from '@/components/ui/Section';
 import Card from '@/components/ui/Card';
 import { useLanguage } from '@/lib/language';
 import { motion } from 'framer-motion';
 
+// Define proper interface for ideas
+interface Idea {
+  id: string;
+  title_en: string;
+  title_az: string;
+  description_en: string;
+  description_az: string;
+  cover_image_url: string;
+  status: string;
+  category_en: string;
+  category_az: string;
+  created_at: string;
+  author_name?: string;
+  technologies?: string[];
+  upvotes?: number;
+  team_size?: number;
+  duration_months?: number;
+  current_phase?: string;
+}
+
 // This will later be fetched from Supabase
-const sampleIdeas = [
+const sampleIdeas: Idea[] = [
   {
     id: '1',
     title_en: 'Smart Campus Navigation System',
@@ -84,7 +104,7 @@ const sampleIdeas = [
 ];
 
 // Get unique categories from ideas
-const getCategories = (ideas: any[], language: string) => {
+const getCategories = (ideas: Idea[], language: string) => {
   const categoryField = language === 'en' ? 'category_en' : 'category_az';
   const uniqueCategories = new Set();
   

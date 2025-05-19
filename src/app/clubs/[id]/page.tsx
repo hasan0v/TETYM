@@ -8,8 +8,56 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
+// Define interfaces for club data
+interface Achievement {
+  title_en: string;
+  title_az: string;
+  date: string;
+}
+
+interface Event {
+  title_en: string;
+  title_az: string;
+  date: string;
+  time_en: string;
+  time_az: string;
+  location_en: string;
+  location_az: string;
+}
+
+interface SocialMedia {
+  instagram?: string;
+  facebook?: string;
+  twitter?: string;
+}
+
+interface Club {
+  id: string;
+  name_en: string;
+  name_az: string;
+  description_en: string;
+  description_az: string;
+  full_description_en: string;
+  full_description_az: string;
+  image_url: string;
+  cover_image_url: string;
+  members_count: number;
+  founded_date: string;
+  category_en: string;
+  category_az: string;
+  meeting_schedule_en: string;
+  meeting_schedule_az: string;
+  location_en: string;
+  location_az: string;
+  faculty_advisor: string;
+  contact_email: string;
+  social_media: SocialMedia;
+  achievements: Achievement[];
+  upcoming_events: Event[];
+}
+
 // This will later be fetched from Supabase
-const sampleClubs = [
+const sampleClubs: Club[] = [
   {
     id: '1',
     name_en: 'Robotics Club',
@@ -134,7 +182,7 @@ export default function ClubDetailPage() {
   const params = useParams();
   const { id } = params;
   
-  const [club, setClub] = useState<any | null>(null);
+  const [club, setClub] = useState<Club | null>(null);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -240,7 +288,7 @@ export default function ClubDetailPage() {
               <div className="bg-white rounded-lg shadow-md p-6 mb-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('clubs.achievements')}</h2>
                 <div className="space-y-4">
-                  {club.achievements.map((achievement: any, index: number) => (
+                  {club.achievements.map((achievement: Achievement, index: number) => (
                     <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
                       <h3 className="text-lg font-medium text-gray-800">
                         {language === 'en' ? achievement.title_en : achievement.title_az}
@@ -263,7 +311,7 @@ export default function ClubDetailPage() {
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">{t('clubs.upcomingEvents')}</h2>
                 <div className="space-y-6">
-                  {club.upcoming_events.map((event: any, index: number) => (
+                  {club.upcoming_events.map((event: Event, index: number) => (
                     <div key={index} className="border-b border-gray-200 pb-4 last:border-0 last:pb-0">
                       <h3 className="text-lg font-medium text-gray-800">
                         {language === 'en' ? event.title_en : event.title_az}

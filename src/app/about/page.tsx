@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   const { t, language } = useLanguage();
-
+  console.log('Current language:', language);
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },

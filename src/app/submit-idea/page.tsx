@@ -6,6 +6,13 @@ import * as Yup from 'yup';
 import MainLayout from '@/components/layout/MainLayout';
 import { useLanguage } from '@/lib/language';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
+
+// Define interfaces for form data
+interface FileWithPreview extends File {
+  preview?: string;
+}
 
 // This would be fetched from Supabase in production
 const categories = [
@@ -38,7 +45,7 @@ export default function SubmitIdeaPage() {
       team_members: '',
       contact_email: '',
       contact_phone: '',
-      attachments: [] as File[]
+      attachments: [] as FileWithPreview[]
     },
     validationSchema: Yup.object({
       title: Yup.string().required(t('submit.validation.titleRequired')),
@@ -49,11 +56,11 @@ export default function SubmitIdeaPage() {
       contact_email: Yup.string().email(t('submit.validation.emailValid')).required(t('submit.validation.emailRequired')),
       attachments: Yup.array().of(
         Yup.mixed()
-          .test('fileSize', t('submit.validation.fileSize'), (value: any) => 
-            !value || (value && value.size <= 5000000)
+          .test('fileSize', t('submit.validation.fileSize'), (value) => 
+            !value || (value && 'size' in value && (value as File).size <= 5000000)
           )
-          .test('fileType', t('submit.validation.fileType'), (value: any) =>
-            !value || (value && ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(value.type))
+          .test('fileType', t('submit.validation.fileType'), (value) =>
+            !value || (value && 'type' in value && ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes((value as File).type))
           )
       )
     }),
@@ -142,12 +149,12 @@ export default function SubmitIdeaPage() {
               >
                 {t('submit.submitAnother')}
               </button>
-              <a
+              <Link
                 href="/"
                 className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 {t('submit.backToHome')}
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -421,11 +428,15 @@ export default function SubmitIdeaPage() {
                   <div key={file.name} className="relative group">
                     <div className="border rounded-lg p-2 h-24 flex flex-col items-center justify-center">
                       {filePreviews[file.name] ? (
-                        <img
-                          src={filePreviews[file.name]}
-                          alt={file.name}
-                          className="h-full object-contain"
-                        />
+                        <div className="relative h-full w-full">
+                          <Image
+                            src={filePreviews[file.name]}
+                            alt={file.name}
+                            fill
+                            sizes="100px"
+                            className="object-contain"
+                          />
+                        </div>
                       ) : (
                         <>
                           <svg className="h-8 w-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">

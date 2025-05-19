@@ -6,8 +6,21 @@ import Card from '@/components/ui/Card';
 import { useLanguage } from '@/lib/language';
 import { motion } from 'framer-motion';
 
+// Define proper interfaces for our data types
+interface Achievement {
+  id: string;
+  title_en: string;
+  title_az: string;
+  description_en: string;
+  description_az: string;
+  image_url: string;
+  date_achieved: string;
+  category_en: string;
+  category_az: string;
+}
+
 // This will later be fetched from Supabase
-const sampleAchievements = [
+const sampleAchievements: Achievement[] = [
   {
     id: '1',
     title_en: 'Gold Medal at International Science Olympiad',
@@ -77,13 +90,13 @@ const sampleAchievements = [
 ];
 
 // Get unique categories from achievements
-const getCategories = (achievements: any[], language: string) => {
+const getCategories = (achievements: Achievement[], language: string) => {
   const categoryField = language === 'en' ? 'category_en' : 'category_az';
   const uniqueCategories = new Set();
   
   achievements.forEach(achievement => {
-    if (achievement[categoryField]) {
-      uniqueCategories.add(achievement[categoryField]);
+    if (achievement[categoryField as keyof Achievement]) {
+      uniqueCategories.add(achievement[categoryField as keyof Achievement]);
     }
   });
   
@@ -91,7 +104,7 @@ const getCategories = (achievements: any[], language: string) => {
 };
 
 // Get achievement years for filtering
-const getYears = (achievements: any[]) => {
+const getYears = (achievements: Achievement[]) => {
   const years = new Set();
   
   achievements.forEach(achievement => {
@@ -121,7 +134,7 @@ export default function AchievementsPage() {
     
     const matchesCategory = selectedCategory === 'All' || achievement[categoryField] === selectedCategory;
     const matchesYear = selectedYear === 'All' || 
-      (achievement.date_achieved && new Date(achievement.date_achieved).getFullYear() === selectedYear);
+      (achievement.date_achieved && new Date(achievement.date_achieved).getFullYear() === Number(selectedYear));
     const matchesSearch = searchQuery === '' || 
       achievement[titleField].toLowerCase().includes(searchQuery.toLowerCase()) ||
       achievement[descriptionField].toLowerCase().includes(searchQuery.toLowerCase());
@@ -189,7 +202,7 @@ export default function AchievementsPage() {
               <label className="text-sm text-gray-600 block mb-1">{t('achievements.year')}</label>
               <select
                 value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value === 'All' ? 'All' : Number(e.target.value))}
+                onChange={(e) => setSelectedYear(e.target.value)}
                 className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 {years.map((year, index) => (
