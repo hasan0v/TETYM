@@ -1,6 +1,6 @@
 # TETYM - Technology Education Platform
 
-A modern, responsive web platform for Technology Education for Tomorrow's Youth & Minds (TETYM). Built with Next.js 15, React 19, and TypeScript, featuring a comprehensive educational ecosystem with courses, projects, achievements, and community features.
+A modern, responsive web platform for Tələbə Elmi-Texniki Yaradıcılıq Mərkəzi (TETYM). Built with Next.js 15, React 19, and TypeScript, featuring a comprehensive educational ecosystem with courses, projects, achievements, and community features.
 
 ## 🚀 Live Demo
 
@@ -234,4 +234,4 @@ For support and questions:
 
 ---
 
-**Built with ❤️ for TETYM - Technology Education for Tomorrow's Youth & Minds**
+**Built with ❤️ for TETYM - Tələbə Elmi-Texniki Yaradıcılıq Mərkəzi**
