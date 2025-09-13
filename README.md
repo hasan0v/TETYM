@@ -4,7 +4,7 @@ A modern, responsive web platform for Technology Education for Tomorrow's Youth 
 
 ## 🚀 Live Demo
 
-**Production Site:** [https://tetym-5u2whc1nn-ali-hasanovs-projects.vercel.app](https://tetym-5u2whc1nn-ali-hasanovs-projects.vercel.app)
+**Production Site:** [https://tetym.space](https://tetym.space)
 
 ## 🎯 Features
 
